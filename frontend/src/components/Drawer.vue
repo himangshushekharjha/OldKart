@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-navigation-drawer
     id="default-drawer"
     v-model="drawer"
@@ -57,7 +58,15 @@
     </template>
 
     <div class="pt-12" />
+    
   </v-navigation-drawer>
+  <v-main>
+        <slot
+            name="main"
+        ></slot>
+    </v-main>
+  </div>
+  
 </template>
 
 <script>

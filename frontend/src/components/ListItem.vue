@@ -5,6 +5,7 @@
     class="py-1"
     v-bind="$attrs"
     v-on="$listeners"
+    @click="goTo(item.to)"
   >
     <v-list-item-icon
       v-if="!item.icon"
@@ -47,6 +48,12 @@
 
         return matches.join('')
       },
+    },
+    methods: {
+      goTo(url) {
+        console.log('clicked', url)
+        this.$router.push({ path: `${url}` }).catch(()=>{});
+      }
     },
    
   }

@@ -24,41 +24,45 @@
       flat
       nav
     >
-      <template v-for="(p, i) in profile">
-        <v-divider
-          v-if="p.divider"
-          :key="`divider-${i}`"
-          class="mb-2 mt-2"
-        />
-
-        <app-bar-item
-          v-else
-          :key="`item-${i}`"
-          to="/"
-        >
-          <v-list-item-title v-text="p.title" />
+        <app-bar-item>
+          <v-list-item-title @click="logout">Logout</v-list-item-title>
         </app-bar-item>
-      </template>
+     
     </v-list>
   </v-menu>
 </template>
 
 <script>
+import { sync } from 'vuex-pathify'
   export default {
     name: 'DefaultAccount',
 
     data: () => ({
-      profile: [
-        { title: 'Profile' },
-        { title: 'Settings' },
-        { divider: true },
-        { title: 'Log out' },
-      ],
+      
     }),
     components : {
       AppBarItem: () => import(
         '../app/BarItem.vue'
       ),
+    },
+     computed:{
+      ...sync('userAuthenticate', [
+        'dialog',
+        'dialogDetail',
+        'isLoggedin',
+        'userName'
+      ]),
+    },
+    methods:{
+      logout(){
+        console.log('logout')
+        localStorage.clear();
+        this.isLoggedin = false;
+        this.dialog = false;
+        this.userName = "Anonymous";
+        
+        this.$router.push('/home').catch(()=>{});
+      }
     }
   }
 </script>

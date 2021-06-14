@@ -1,6 +1,5 @@
 <template>
   <v-app>
-      <default-drawer />
       <default-bar />
       <router-view  :key="$route.fullPath" />
   </v-app>
@@ -27,10 +26,7 @@ export default {
         /* webpackChunkName: "default-app-bar" */
         './components/AppBar.vue'
       ),
-      DefaultDrawer: () => import(
-        /* webpackChunkName: "default-drawer" */
-        './components/Drawer.vue'
-      ),
+      
     }
 };
 </script>

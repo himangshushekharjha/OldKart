@@ -3,9 +3,9 @@
   <default-drawer>
     <template
       v-slot:main
-    > 
-  <home-login></home-login>
-  </template>
+    >  
+      <h1>User Profile helllsad</h1>
+    </template>
   </default-drawer>
 </v-app>
 </template>
@@ -14,15 +14,11 @@
 
 
   export default {
+    name : 'Profile',
     components: {  
-      HomeLogin: () => import(
-        /* webpackChunkName: "default-app-bar" */
-        '../components/HomeLogin.vue'
-      ),
       DefaultDrawer: () => import(
         '../components/Drawer.vue'
       ),
-    
     }
   }
 </script>

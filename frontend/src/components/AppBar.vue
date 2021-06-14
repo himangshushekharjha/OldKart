@@ -19,7 +19,7 @@
 
     <v-toolbar-title
       class="font-weight-light text-h5"
-    > Hello </v-toolbar-title>
+    > Hello {{ userName }}</v-toolbar-title>
 
     <v-spacer />
 
@@ -27,16 +27,42 @@
 
     <default-go-home />
 
-    <default-notifications />
+    <template v-if="!isLoggedin">
+        <app-btn
+          class="text-none ma-2"
+          color="secondary"
+          @click="$router.push('/login')"
+        >
+          <v-icon left>
+            mdi-login
+          </v-icon>
 
-    <default-account />
+          Login
+        </app-btn>
+
+        <app-btn
+          class="text-none ma-2"
+          color="secondary"
+          @click="$router.push('/register')"
+        >
+          <v-icon left>
+            mdi-account
+          </v-icon>
+
+          mdi-account
+        </app-btn>
+    </template>
+    <template v-else>
+      <default-notifications />
+      <default-account />
+    </template>
   </v-app-bar>
 </template>
 
 <script>
   // Utilities
   import { sync } from 'vuex-pathify'
-
+  import DefaultDrawerToggle from './widgets/DrawerToggle.vue'
   export default {
     name: 'DefaultBar',
 
@@ -45,10 +71,8 @@
         /* webpackChunkName: "default-account" */
         './widgets/Account'
       ),
-      DefaultDrawerToggle: () => import(
-        /* webpackChunkName: "default-drawer-toggle" */
-        './widgets/DrawerToggle'
-      ),
+      DefaultDrawerToggle: DefaultDrawerToggle, 
+    
       DefaultGoHome: () => import(
         /* webpackChunkName: "default-go-home" */
         './widgets/GoHome'
@@ -61,6 +85,10 @@
         /* webpackChunkName: "default-search" */
         './widgets/Search'
       ),
+      AppBtn: () => import(
+        /* webpackChunkName: "default-list" */
+        './app/Btn.vue'
+      ),
     },
 
     computed: {
@@ -68,7 +96,10 @@
         'drawer',
         'mini',
       ]),
-      
+      ...sync('userAuthenticate', [
+        'isLoggedin',
+        'userName'
+      ]),
     },
   }
 </script>

@@ -10,12 +10,12 @@ const state = {
     {
       title: 'Dashboard',
       icon: 'mdi-view-dashboard',
-      to: '/',
+      to: '/home',
     },
     {
       title: 'User Profile',
       icon: 'mdi-account',
-      to: '/components/profile/',
+      to: '/user-profile',
     },
     {
       title: 'Regular Tables',

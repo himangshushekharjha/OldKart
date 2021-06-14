@@ -9,7 +9,6 @@
       <default-list-item
         :key="`item-${i}`"
         :item="item"
-        @click="goTo(item.to)"
       />
     </template>
   </v-list>
@@ -28,12 +27,6 @@
         type: Array,
         default: () => ([]),
       },
-    },
-     methods: {
-      goTo(url) {
-        console.log('clicked')
-        this.$router.push(`/${url}`)
-      }
     },
   }
 </script>
