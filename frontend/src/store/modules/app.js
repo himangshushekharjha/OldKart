@@ -8,14 +8,14 @@ const state = {
   mini: false,
   items: [
     {
-      title: 'Dashboard',
+      title: 'Shop',
       icon: 'mdi-view-dashboard',
-      to: '/home',
+      to: '/shop',
     },
     {
-      title: 'User Profile',
+      title: 'My Products',
       icon: 'mdi-account',
-      to: '/user-profile',
+      to: '/my-products',
     },
     {
       title: 'Regular Tables',
